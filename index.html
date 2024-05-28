@@ -96,25 +96,25 @@
                 <div id="imageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="#imageCarousel" data-slide-to="0"><img src="https://i.postimg.cc/8Cv67xL2/IMG-20240528-083714.jpg" alt="IMG-20240528-083714"/></a>
+                            <img src="https://i.postimg.cc/8Cv67xL2/IMG-20240528-083714.jpg" alt="IMG-20240528-083714"/>
                         </div>
                         <div class="carousel-item">
-                            <a href="#imageCarousel" data-slide-to="1"><img src="https://i.postimg.cc/43hHMjd8/IMG-20240528-084143.jpg" alt="IMG-20240528-084143"/></a>
+                            <img src="https://i.postimg.cc/43hHMjd8/IMG-20240528-084143.jpg" alt="IMG-20240528-084143"/>
                         </div>
                         <div class="carousel-item">
-                            <a href="#imageCarousel" data-slide-to="2"><img src="https://i.postimg.cc/3JKpRLSR/IMG-20240528-084214.jpg" alt="IMG-20240528-084214"/></a>
+                            <img src="https://i.postimg.cc/3JKpRLSR/IMG-20240528-084214.jpg" alt="IMG-20240528-084214"/>
                         </div>
                         <div class="carousel-item">
-                            <a href="#imageCarousel" data-slide-to="3"><img src="https://i.postimg.cc/VLGSNz0G/IMG-20240528-084230.jpg" alt="IMG-20240528-084230"/></a>
+                            <img src="https://i.postimg.cc/VLGSNz0G/IMG-20240528-084230.jpg" alt="IMG-20240528-084230"/>
                         </div>
                         <div class="carousel-item">
-                            <a href="#imageCarousel" data-slide-to="4"><img src="https://i.postimg.cc/cLFc0qd0/IMG-20240528-084234.jpg" alt="IMG-20240528-084234"/></a>
+                            <img src="https://i.postimg.cc/cLFc0qd0/IMG-20240528-084234.jpg" alt="IMG-20240528-084234"/>
                         </div>
                         <div class="carousel-item">
-                            <a href="#imageCarousel" data-slide-to="5"><img src="https://i.postimg.cc/vTG14Bvj/IMG-20240528-085300.jpg" alt="IMG-20240528-085300"/></a>
+                            <img src="https://i.postimg.cc/vTG14Bvj/IMG-20240528-085300.jpg" alt="IMG-20240528-085300"/>
                         </div>
                         <div class="carousel-item">
-                            <a href="#imageCarousel" data-slide-to="6"><img src="https://i.postimg.cc/59mYZB4M/IMG-20240528-085931.jpg" alt="IMG-20240528-085931"/></a>
+                            <img src="https://i.postimg.cc/59mYZB4M/IMG-20240528-085931.jpg" alt="IMG-20240528-085931"/>
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
@@ -141,10 +141,20 @@
             return false;
         }
 
+        // 禁止影片拖拽和另存新檔
         document.getElementById('mainVideoPlayer').addEventListener('contextmenu', showNotification);
         document.getElementById('mainVideoPlayer').addEventListener('dragstart', function(event) {
             event.preventDefault();
             showNotification();
+        });
+
+        // 禁止圖片右鍵和拖拽
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('contextmenu', showNotification);
+            img.addEventListener('dragstart', function(event) {
+                event.preventDefault();
+                showNotification();
+            });
         });
     </script>
 </body>
