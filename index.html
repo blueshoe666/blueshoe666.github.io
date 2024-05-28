@@ -13,67 +13,27 @@
         }
         h2 {
             color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
         }
         .video-thumbnail {
             cursor: pointer;
+            width: 150px;
+            height: auto;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-    </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <!-- 主影片播放器 -->
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <video id="mainVideoPlayer" controls width="100%">
-                    <source src="VID_20240528_084115.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-
-        <!-- 影片縮圖預覽 -->
-        <div class="row mt-4">
-            <div class="col-md-8 offset-md-2">
-                <h2>影片預覽</h2>
-                <div class="d-flex justify-content-between">
-                    <img src="thumbnail1.jpg" alt="Video 1" class="img-thumbnail video-thumbnail" data-video-src="VID_20240528_084115.mp4" width="150">
-                    <img src="thumbnail2.jpg" alt="Video 2" class="img-thumbnail video-thumbnail" data-video-src="VID_20240528_084116.mp4" width="150">
-                    <img src="thumbnail3.jpg" alt="Video 3" class="img-thumbnail video-thumbnail" data-video-src="VID_20240528_084117.mp4" width="150">
-                </div>
-            </div>
-        </div>
-
-        <!-- 實時瀏覽區域 -->
-        <div class="row mt-5">
-            <div class="col-md-8 offset-md-2">
-                <h2>實時瀏覽</h2>
-                <div id="realTimeContent">
-                    <!-- 在這裡顯示實時內容 -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 引入 JavaScript 文件 -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- 自定義 JavaScript -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const thumbnails = document.querySelectorAll('.video-thumbnail');
-            const mainVideoPlayer = document.getElementById('mainVideoPlayer');
-
-            thumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('click', function() {
-                    const videoSrc = this.getAttribute('data-video-src');
-                    const videoSource = mainVideoPlayer.querySelector('source');
-                    videoSource.setAttribute('src', videoSrc);
-                    mainVideoPlayer.load();
-                    mainVideoPlayer.play();
-                });
-            });
-        });
-    </script>
-</body>
-</html>
+        .video-thumbnail:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .thumbnail-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .thumbnail-wrapper {
+            text-align: center;
+        }
+        .thumbnail-wrapper p {
+            margin-top: 10
