@@ -51,6 +51,11 @@
             padding: 10px;
             border-radius: 10px;
         }
+        /* 禁止圖片拖拽和右鍵 */
+        img, video {
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
     </style>
 </head>
 <body>
@@ -72,17 +77,17 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail1.jpg" alt="Video 1" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084115.mp4" oncontextmenu="return showNotification()">
+                            <img src="thumbnail1.jpg" alt="Video 1" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084115.mp4">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail2.jpg" alt="Video 2" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084116.mp4" oncontextmenu="return showNotification()">
+                            <img src="thumbnail2.jpg" alt="Video 2" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084116.mp4">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail3.jpg" alt="Video 3" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084117.mp4" oncontextmenu="return showNotification()">
+                            <img src="thumbnail3.jpg" alt="Video 3" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084117.mp4">
                         </div>
                     </div>
                 </div>
@@ -141,7 +146,7 @@
             return false;
         }
 
-        // 禁止影片拖拽和另存新檔
+        // 禁止影片右鍵和拖拽
         document.getElementById('mainVideoPlayer').addEventListener('contextmenu', showNotification);
         document.getElementById('mainVideoPlayer').addEventListener('dragstart', function(event) {
             event.preventDefault();
@@ -149,7 +154,7 @@
         });
 
         // 禁止圖片右鍵和拖拽
-        document.querySelectorAll('img').forEach(img => {
+        document.querySelectorAll('img').forEach(function(img) {
             img.addEventListener('contextmenu', showNotification);
             img.addEventListener('dragstart', function(event) {
                 event.preventDefault();
