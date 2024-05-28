@@ -36,15 +36,11 @@
             border-radius: 10px;
             width: 100%;
             height: auto;
-            pointer-events: none; /* 禁用圖片的另存新檔功能 */
-            user-select: none; /* 禁用圖片選中 */
         }
         .carousel-item img {
             width: 100%;
             height: auto;
             border-radius: 10px;
-            pointer-events: none; /* 禁用圖片的另存新檔功能 */
-            user-select: none; /* 禁用圖片選中 */
         }
         .carousel-item {
             text-align: center;
@@ -55,10 +51,6 @@
             padding: 10px;
             border-radius: 10px;
         }
-        video {
-            pointer-events: none; /* 禁用影片的另存新檔功能 */
-            user-select: none; /* 禁用影片選中 */
-        }
     </style>
 </head>
 <body>
@@ -66,7 +58,7 @@
         <!-- 主影片播放器 -->
         <div class="row mb-4">
             <div class="col-md-8 offset-md-2">
-                <video id="mainVideoPlayer" controls width="100%" oncontextmenu="return false;" ondragstart="return false;" ondrop="return false;">
+                <video id="mainVideoPlayer" controls width="100%" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                     <source src="http://owo.freeserver.tw:20357/VID_20240528_084115.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -80,17 +72,17 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail1.jpg" alt="Video 1" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084115.mp4">
+                            <img src="thumbnail1.jpg" alt="Video 1" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084115.mp4" oncontextmenu="return showNotification()">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail2.jpg" alt="Video 2" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084116.mp4">
+                            <img src="thumbnail2.jpg" alt="Video 2" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084116.mp4" oncontextmenu="return showNotification()">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail3.jpg" alt="Video 3" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084117.mp4">
+                            <img src="thumbnail3.jpg" alt="Video 3" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084117.mp4" oncontextmenu="return showNotification()">
                         </div>
                     </div>
                 </div>
@@ -104,25 +96,25 @@
                 <div id="imageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://i.postimg.cc/8Cv67xL2/IMG-20240528-083714.jpg" alt="IMG-20240528-083714"/>
+                            <img src="https://i.postimg.cc/8Cv67xL2/IMG-20240528-083714.jpg" alt="IMG-20240528-083714" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://i.postimg.cc/43hHMjd8/IMG-20240528-084143.jpg" alt="IMG-20240528-084143"/>
+                            <img src="https://i.postimg.cc/43hHMjd8/IMG-20240528-084143.jpg" alt="IMG-20240528-084143" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://i.postimg.cc/3JKpRLSR/IMG-20240528-084214.jpg" alt="IMG-20240528-084214"/>
+                            <img src="https://i.postimg.cc/3JKpRLSR/IMG-20240528-084214.jpg" alt="IMG-20240528-084214" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://i.postimg.cc/VLGSNz0G/IMG-20240528-084230.jpg" alt="IMG-20240528-084230"/>
+                            <img src="https://i.postimg.cc/VLGSNz0G/IMG-20240528-084230.jpg" alt="IMG-20240528-084230" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://i.postimg.cc/cLFc0qd0/IMG-20240528-084234.jpg" alt="IMG-20240528-084234"/>
+                            <img src="https://i.postimg.cc/cLFc0qd0/IMG-20240528-084234.jpg" alt="IMG-20240528-084234" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://i.postimg.cc/vTG14Bvj/IMG-20240528-085300.jpg" alt="IMG-20240528-085300"/>
+                            <img src="https://i.postimg.cc/vTG14Bvj/IMG-20240528-085300.jpg" alt="IMG-20240528-085300" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://i.postimg.cc/59mYZB4M/IMG-20240528-085931.jpg" alt="IMG-20240528-085931"/>
+                            <img src="https://i.postimg.cc/59mYZB4M/IMG-20240528-085931.jpg" alt="IMG-20240528-085931" oncontextmenu="return showNotification();" ondragstart="return false;" ondrop="return false;">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
@@ -144,16 +136,24 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- 自定義 JavaScript -->
     <script>
-        document.getElementById('mainVideoPlayer').addEventListener('contextmenu', function(event) {
-            event.preventDefault();
+        function showNotification() {
             alert("目前僅供瀏覽，下載功能即將開放");
+            return false;
+        }
+
+        // 禁用右鍵和拖拽
+        document.addEventListener('contextmenu', function(e) {
+            if (e.target.nodeName === 'IMG' || e.target.nodeName === 'VIDEO') {
+                e.preventDefault();
+                showNotification();
+            }
         });
 
-        // 禁用所有圖片和影片的拖拽和另存新檔功能
-        document.querySelectorAll('img, video').forEach(element => {
-            element.addEventListener('contextmenu', event => event.preventDefault());
-            element.addEventListener('dragstart', event => event.preventDefault());
-            element.addEventListener('drop', event => event.preventDefault());
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.nodeName === 'IMG' || e.target.nodeName === 'VIDEO') {
+                e.preventDefault();
+                showNotification();
+            }
         });
     </script>
 </body>
