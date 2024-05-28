@@ -77,12 +77,12 @@
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail2.jpg" alt="Video 2" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084116.mp4" oncontextmenu="return showNotification()">
+                            <img src="thumbnail2.jpg" alt="Video 2" class="card-img-top video-thumbnail" data-video-src="http://owo.freeserver.tw:20357/VID_20240528_084116.mp4" oncontextmenu="return showNotification()">
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="card mb-4">
-                            <img src="thumbnail3.jpg" alt="Video 3" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084117.mp4" oncontextmenu="return showNotification()">
+                            <img src="thumbnail3.jpg" alt="Video 3" class="card-img-top video-thumbnail" data-video-src="http://owo.freeserver.tw:20357/VID_20240528_084117.mp4" oncontextmenu="return showNotification()">
                         </div>
                     </div>
                 </div>
@@ -131,7 +131,7 @@
     </div>
 
     <!-- 版權信息 -->
-    <div class="copy-text">© 2024 owo.biv.com.tw. All rights reserved.</div>
+    <div class="copy-text">© 2024 owo.bov.com.tw Website. All rights reserved.</div>
 
     <!-- 引入 JavaScript 文件 -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
@@ -164,7 +164,12 @@
             item.addEventListener('click', event => {
                 const videoSrc = event.target.getAttribute('data-video-src');
                 const mainVideoPlayer = document.getElementById('mainVideoPlayer');
-                mainVideoPlayer.querySelector('source').src = videoSrc;
+                const mainVideoSource = mainVideoPlayer.querySelector('source');
+                
+                // 更改主影片播放器的 source src 屬性
+                mainVideoSource.src = videoSrc;
+                
+                // 重新加載並播放影片
                 mainVideoPlayer.load();
                 mainVideoPlayer.play();
             });
