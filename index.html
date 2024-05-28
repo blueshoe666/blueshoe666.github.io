@@ -18,22 +18,123 @@
         }
         .video-thumbnail {
             cursor: pointer;
-            width: 150px;
+            width: 100%;
             height: auto;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s;
         }
         .video-thumbnail:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
+        }
+        .card {
+            border: none;
+            transition: box-shadow 0.3s;
+        }
+        .card:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        .thumbnail-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+        .card img {
+            border-radius: 10px;
         }
-        .thumbnail-wrapper {
+        .modal-content {
             text-align: center;
         }
-        .thumbnail-wrapper p {
-            margin-top: 10
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- 主影片播放器 -->
+        <div class="row mb-4">
+            <div class="col-md-8 offset-md-2">
+                <video id="mainVideoPlayer" controls width="100%">
+                    <source src="VID_20240528_084115.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+
+        <!-- 影片縮圖預覽 -->
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h2>影片預覽</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="thumbnail1.jpg" alt="Video 1" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084115.mp4">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="thumbnail2.jpg" alt="Video 2" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084116.mp4">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mb-4">
+                            <img src="thumbnail3.jpg" alt="Video 3" class="card-img-top video-thumbnail" data-video-src="VID_20240528_084117.mp4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 禁用影片下載的提示模態框 -->
+    <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="downloadModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="downloadModalLabel">提示</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    目前僅供瀏覽，下載功能即將開放。
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 JavaScript 文件 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- 自定義 JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const thumbnails = document.querySelectorAll('.video-thumbnail');
+            const mainVideoPlayer = document.getElementById('mainVideoPlayer');
+            const downloadModal = $('#downloadModal');
+
+            // 切換影片播放源
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', function() {
+                    const videoSrc = this.getAttribute('data-video-src');
+                    const videoSource = mainVideoPlayer.querySelector('source');
+                    videoSource.setAttribute('src', videoSrc);
+                    mainVideoPlayer.load();
+                    mainVideoPlayer.play();
+                });
+            });
+
+            // 禁止影片下載和拖拽
+            mainVideoPlayer.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                downloadModal.modal('show');
+            });
+
+            mainVideoPlayer.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+            });
+
+            thumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('dragstart', function(e) {
+                    e.preventDefault();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
