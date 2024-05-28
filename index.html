@@ -42,6 +42,15 @@
             height: auto;
             border-radius: 10px;
         }
+        .carousel-item {
+            text-align: center;
+        }
+        .carousel-item img {
+            display: inline-block;
+            border: 2px solid #007bff;
+            padding: 10px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -49,7 +58,7 @@
         <!-- 主影片播放器 -->
         <div class="row mb-4">
             <div class="col-md-8 offset-md-2">
-                <video id="mainVideoPlayer" controls width="100%" oncontextmenu="return false;">
+                <video id="mainVideoPlayer" controls width="100%" oncontextmenu="return false;" ondragstart="return false;" ondrop="return false;">
                     <source src="http://owo.freeserver.tw:20357/VID_20240528_084115.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -80,50 +89,63 @@
             </div>
         </div>
 
-<!-- 輪播圖片 -->
-<div class="row mt-4">
-    <div class="col-md-8 offset-md-2">
-        <h2>自動切換圖片</h2>
-        <div id="imageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="#imageCarousel" data-slide-to="0"><img src="https://i.postimg.cc/8Cv67xL2/IMG-20240528-083714.jpg" alt="IMG-20240528-083714"/></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#imageCarousel" data-slide-to="1"><img src="https://i.postimg.cc/43hHMjd8/IMG-20240528-084143.jpg" alt="IMG-20240528-084143"/></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#imageCarousel" data-slide-to="2"><img src="https://i.postimg.cc/3JKpRLSR/IMG-20240528-084214.jpg" alt="IMG-20240528-084214"/></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#imageCarousel" data-slide-to="3"><img src="https://i.postimg.cc/VLGSNz0G/IMG-20240528-084230.jpg" alt="IMG-20240528-084230"/></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#imageCarousel" data-slide-to="4"><img src="https://i.postimg.cc/cLFc0qd0/IMG-20240528-084234.jpg" alt="IMG-20240528-084234"/></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#imageCarousel" data-slide-to="5"><img src="https://i.postimg.cc/vTG14Bvj/IMG-20240528-085300.jpg" alt="IMG-20240528-085300"/></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#imageCarousel" data-slide-to="6"><img src="https://i.postimg.cc/59mYZB4M/IMG-20240528-085931.jpg" alt="IMG-20240528-085931"/></a>
+        <!-- 輪播圖片 -->
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <h2>自動切換圖片</h2>
+                <div id="imageCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="#imageCarousel" data-slide-to="0"><img src="https://i.postimg.cc/8Cv67xL2/IMG-20240528-083714.jpg" alt="IMG-20240528-083714"/></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#imageCarousel" data-slide-to="1"><img src="https://i.postimg.cc/43hHMjd8/IMG-20240528-084143.jpg" alt="IMG-20240528-084143"/></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#imageCarousel" data-slide-to="2"><img src="https://i.postimg.cc/3JKpRLSR/IMG-20240528-084214.jpg" alt="IMG-20240528-084214"/></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#imageCarousel" data-slide-to="3"><img src="https://i.postimg.cc/VLGSNz0G/IMG-20240528-084230.jpg" alt="IMG-20240528-084230"/></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#imageCarousel" data-slide-to="4"><img src="https://i.postimg.cc/cLFc0qd0/IMG-20240528-084234.jpg" alt="IMG-20240528-084234"/></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#imageCarousel" data-slide-to="5"><img src="https://i.postimg.cc/vTG14Bvj/IMG-20240528-085300.jpg" alt="IMG-20240528-085300"/></a>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="#imageCarousel" data-slide-to="6"><img src="https://i.postimg.cc/59mYZB4M/IMG-20240528-085931.jpg" alt="IMG-20240528-085931"/></a>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#imageCarousel" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#imageCarousel" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
     </div>
-</div>
-
-
 
     <!-- 引入 JavaScript 文件 -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- 自定義
+    <!-- 自定義 JavaScript -->
+    <script>
+        function showNotification() {
+            alert("目前僅供瀏覽，下載功能即將開放");
+            return false;
+        }
+
+        document.getElementById('mainVideoPlayer').addEventListener('contextmenu', showNotification);
+        document.getElementById('mainVideoPlayer').addEventListener('dragstart', function(event) {
+            event.preventDefault();
+            showNotification();
+        });
+    </script>
+</body>
+</html>
