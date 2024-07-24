@@ -52,7 +52,7 @@
         <?php
         if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['query_domain']) && isset($_GET['type'])) {
             $domain = filter_var($_GET['query_domain'], FILTER_SANITIZE_STRING);
-            $type = $_GET['type'];
+            $type = filter_var($_GET['type'], FILTER_SANITIZE_STRING);
 
             if (empty($domain)) {
                 echo "<h2>錯誤</h2>";
