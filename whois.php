@@ -11,8 +11,8 @@
             background-color: #f0f0f0;
             padding: 20px;
             margin: 0;
-            position: relative; /* Ensure body is positioned for absolute positioning */
-            min-height: 100vh; /* Ensure body covers the whole viewport */
+            position: relative;
+            min-height: 100vh;
         }
         .container {
             background-color: #fff;
@@ -50,9 +50,15 @@
 <body>
     <div class="container">
         <?php
-        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['query_domain'])) {
-            $domain = $_GET['query_domain'];
-            $type = isset($_GET['type']) ? $_GET['type'] : '';
+        if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['query_domain']) && isset($_GET['type'])) {
+            $domain = filter_var($_GET['query_domain'], FILTER_SANITIZE_STRING);
+            $type = $_GET['type'];
+
+            if (empty($domain)) {
+                echo "<h2>錯誤</h2>";
+                echo "<p class='error'>無效的域名。</p>";
+                exit;
+            }
             
             if ($type === 'globe') {
                 // Open socket connection to IANA WHOIS server
@@ -60,16 +66,16 @@
                 if ($socket) {
                     // Send domain query
                     fputs($socket, $domain . "\r\n");
-                    
+
                     // Buffer to store WHOIS response
                     $response = '';
                     while (!feof($socket)) {
                         $response .= fgets($socket, 128);
                     }
-                    
+
                     // Close socket connection
                     fclose($socket);
-                    
+
                     // Replace IANA WHOIS information with BIV.COM.TW information
                     $response = str_replace(
                         [
@@ -82,7 +88,7 @@
                         ],
                         $response
                     );
-                    
+
                     // Display WHOIS information
                     echo "<h2>WHOIS 查詢結果: $domain</h2>";
                     echo "<pre>" . htmlspecialchars($response) . "</pre>";
@@ -96,16 +102,16 @@
                 if ($socket) {
                     // Send domain query
                     fputs($socket, $domain . "\r\n");
-                    
+
                     // Buffer to store WHOIS response
                     $response = '';
                     while (!feof($socket)) {
                         $response .= fgets($socket, 128);
                     }
-                    
+
                     // Close socket connection
                     fclose($socket);
-                    
+
                     // Replace TWNIC WHOIS information with BIV.COM.TW information
                     $response = str_replace(
                         [
@@ -118,7 +124,7 @@
                         ],
                         $response
                     );
-                    
+
                     // Display WHOIS information
                     echo "<h2>WHOIS 查詢結果: $domain</h2>";
                     echo "<pre>" . htmlspecialchars($response) . "</pre>";
@@ -128,7 +134,7 @@
                 }
             } else {
                 echo "<h2>錯誤</h2>";
-                echo "<p class='error'>僅能查詢台灣網域 (.tw)</p>";
+                echo "<p class='error'>僅能查詢台灣網域 (.tw) 或其他指定的網域</p>";
             }
         } else {
             echo "<h2>錯誤</h2>";
@@ -137,7 +143,6 @@
         ?>
     </div>
 
-    <!-- Copyright information -->
     <div class="copyright">
         &copy; 2024 whois.biv.com.tw corp. All rights reserved.
     </div>
